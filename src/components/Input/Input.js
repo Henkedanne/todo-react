@@ -4,30 +4,31 @@ class Input extends Component {
     constructor(props) {
         super(props)
         
-        
         this.state = {
-            itemValue: '',
-            id: 0
+            value: '',
+            id: 0,
+            isComplete: false
         }
-        
-    };
+    }
+
     componentDidMount() {
         this.inputRef.focus();
     }
 
     handleChange(event) {
-        this.setState({
-            itemValue: event.target.value
-        });
+        this.setState({ value: event.target.value });
     }
     
     handleSubmit(event) {
+        if (this.state.value) {
         this.setState({ id: this.state.id + 1 })
         // Function som kommer från App. skickas som prop.
-        this.props.pushToList(this.state.itemValue, this.state.id);
+        this.props.pushToList(this.state);
         event.preventDefault();
-        this.inputRef.value = '';
-        this.inputRef.focus();
+        this.inputRef.value = this.state.value;
+        this.inputRef.select();
+        } 
+        event.preventDefault();
     }
 
     render() {

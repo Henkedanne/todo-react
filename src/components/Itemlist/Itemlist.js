@@ -1,4 +1,5 @@
 import React from 'react';
+import Item from './Itemlist';
 
 const ItemList = (props) => {
    
@@ -7,14 +8,18 @@ const ItemList = (props) => {
     let todoItems = list.map(item => { 
         return (
         <div className="list-item__container">    
-            <li key={item.id}>{item.item}</li>
+            <li key={item.id}>{item.value}</li>
             <button onClick={() => props.removeFromList(item.id)}>remove</button>
         </div>
         );
     });
 
     return (
-        <ul>{todoItems}</ul>
+        <div>
+            <ul>{todoItems}</ul>
+           
+        </div>
+
     );
 }
 
